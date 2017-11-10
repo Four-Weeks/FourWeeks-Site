@@ -1,0 +1,20 @@
+Options -Indexes
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+#RewriteBase /flyspray
+
+	ErrorDocument 302 https://www.fourweeks.com.br/
+	ErrorDocument 401 https://www.fourweeks.com.br/
+	ErrorDocument 402 https://www.fourweeks.com.br/
+	ErrorDocument 400 https://www.fourweeks.com.br/
+	ErrorDocument 404 https://www.fourweeks.com.br/
+    ErrorDocument 500 https://www.fourweeks.com.br/
+	ErrorDocument 403 https://www.fourweeks.com.br/
+	
+</IfModule>
+
+
+php_flag log_errors on
+php_value error_log /home/u445734061/public_html/error_log.txt

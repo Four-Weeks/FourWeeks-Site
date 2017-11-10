@@ -1,0 +1,39 @@
+Options -Indexes
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+#RewriteBase /flyspray
+
+	ErrorDocument 302 https://www.fourweeks.com.br/
+	ErrorDocument 401 https://www.fourweeks.com.br/
+	ErrorDocument 402 https://www.fourweeks.com.br/
+	ErrorDocument 400 https://www.fourweeks.com.br/
+	ErrorDocument 404 https://www.fourweeks.com.br/
+    ErrorDocument 500 https://www.fourweeks.com.br/
+	ErrorDocument 403 https://www.fourweeks.com.br/
+
+	RewriteCond %{HTTPS} off
+	RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+	RewriteCond %{HTTP_HOST} !^www\. [NC]
+	RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	RewriteRule ^cancelar_inscricao_emails/(.*)$ API/db_emails_inscritos_cancelar.php?id=$1 [L,QSA]
+	RewriteRule ^afiliacao-conclusao/(.*)$ site/afiliacao-conclusao.php?id=$1 [L,QSA]
+	RewriteRule ^afiliacao-(.*)$ site/afiliacao.php?veio_por=$1 [L,QSA]
+	RewriteRule ^afiliacao$ site/afiliacao.php
+	RewriteRule ^contrato_afiliados$ site/contrato_afiliados.php
+	RewriteRule ^compra-validar$ site/compra-validar.php
+	RewriteRule ^comprar$ site/compra.php
+	RewriteRule ^compra$ site/compra.php
+	RewriteRule ^como-vou-aprender$ site/saiba-mais.php
+	RewriteRule ^saiba-mais$ site/saiba-mais.php
+	RewriteRule ^termos_compra$ site/termos_compra.php
+	RewriteRule ^home$ site/index.php
+	RewriteRule ^$ site/index.php
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ site/$1 [L,QSA]
+</IfModule>
+

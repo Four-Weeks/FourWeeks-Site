@@ -1,0 +1,12 @@
+Options -Indexes
+Options +FollowSymLinks
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+#RewriteBase /flyspray
+
+	RewriteRule ^sorteio-de-200-reais-afiliados$ sorteio-de-200-reais-afiliados.php
+	RewriteRule ^$ index.php
+
+</IfModule>
+
